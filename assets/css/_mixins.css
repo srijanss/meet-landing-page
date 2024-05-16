@@ -10,6 +10,16 @@
   }
 }
 
+@define-mixin media-query-desktop-xl {
+  @media (min-width: 1505px) {
+    @mixin-content;
+  }
+}
+
 @define-mixin full-width {
   width: 100%;
+}
+@define-mixin full-width-height {
+  width: 100%;
+  height: 100%;
 }

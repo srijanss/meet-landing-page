@@ -50,7 +50,6 @@ h2 {
 
 img {
   max-inline-size: 100%;
-  block-size: auto;
   object-fit: cover;
   object-position: center;
 }
@@ -97,7 +96,7 @@ button {
   border-radius: 50%;
   font-weight: var(--font-weight-black);
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.625;
   color: var(--grey);
   display: flex;
   justify-content: center;
@@ -106,12 +105,13 @@ button {
   position: relative;
   background-color: var(--off-white);
   &:before {
+    --tail-width: 1px;
     content: "";
-    width: 1px;
+    width: var(--tail-width);
     height: var(--step-bubble-tail-length);
     position: absolute;
     top: calc(var(--step-bubble-tail-length) * -1);
-    left: calc(50% - 0.5px);
+    left: calc(50% - var(--tail-width) / 2);
     background-color: var(--grey-25);
   }
 
@@ -128,52 +128,71 @@ header {
   justify-content: center;
   align-items: center;
   margin-top: 48px;
+
+  @mixin media-query-desktop {
+    margin-top: 80px;
+  }
 }
 main {
   @mixin full-width;
-  overflow-x: hidden;
-  position: relative;
 }
 
 .hero {
-  width: calc(100% + 40px);
-  position: relative;
-  left: calc(50% - (100% + 40px) / 2);
-  margin-top: 64px;
+  @mixin full-width;
+  margin: 64px auto 0;
   display: grid;
+  justify-content: center;
 
   & img.hero__image--left {
     display: block;
-    @mixin full-width;
+    width: 414px;
+    height: 153px;
   }
   & img.hero__image--right {
     display: none;
   }
   @mixin media-query-tablet {
-    width: calc(100% + 50px);
-    left: calc(50% - (100% + 50px) / 2);
+    margin: 64px auto 0;
+
+    & img.hero__image--left {
+      width: 820px;
+      height: 303px;
+    }
   }
   @mixin media-query-desktop {
-    width: 1440px;
+    max-width: 100%;
+    width: 1504px;
     height: 358px;
     margin: 64px auto 0;
     grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
     & img.hero__image--left {
-      width: auto;
+      width: 375px;
+      height: 312px;
       justify-self: start;
-      transform: translateX(-7px);
+      object-position: right;
+      @mixin media-query-desktop-xl {
+        width: auto;
+        height: auto;
+      }
     }
     & img.hero__image--right {
       display: block;
-      transform: translateX(30px);
+      height: 312px;
+      object-position: left;
       justify-self: end;
+      align-self: end;
+      @mixin media-query-desktop-xl {
+        width: auto;
+        height: auto;
+      }
     }
   }
 }
 
 .hero__cta {
-  margin-top: 48px;
-  padding: 0 24px;
+  width: 327px;
+  margin: 48px auto 0;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -201,8 +220,7 @@ main {
   }
 
   @mixin media-query-tablet {
-    width: 467px;
-    margin: 0 auto;
+    width: 457px;
     margin-top: 72px;
     padding: 0;
     & h1 {
@@ -216,7 +234,6 @@ main {
   }
   @mixin media-query-desktop {
     width: 540px;
-    margin: 0 auto;
     margin-top: 48px;
     gap: 32px;
     & h1 {
@@ -241,6 +258,7 @@ main {
   & .gallery {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     row-gap: 24px;
     column-gap: 25px;
 
@@ -320,6 +338,7 @@ main {
       p {
         font-size: 18px;
         line-heigth: 1.44;
+        letter-spacing: 0.5px;
       }
     }
   }
@@ -343,8 +362,7 @@ footer {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    @mixin full-width-height;
     background-color: var(--primary-color-90);
     display: flex;
     flex-direction: column;
@@ -356,11 +374,13 @@ footer {
     padding: 0 24px;
 
     h2 {
+      width: 327px;
       font-weight: var(--font-weight-black);
       font-size: 32px;
       line-height: 1.1;
     }
     p {
+      width: 327px;
       font-weight: var(--font-weight-medium);
       font-size: 18px;
       line-height: 1.44;
@@ -370,6 +390,7 @@ footer {
   & img {
     display: block;
     width: 100%;
+    block-size: auto;
   }
 
   & .attribution {
