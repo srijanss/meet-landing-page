@@ -351,8 +351,18 @@ footer {
     top: calc(var(--step-bubble-size) / 2);
     left: calc(50% - var(--step-bubble-size) / 2);
     z-index: 1;
+    margin-top: calc(
+      var(--step-bubble-tail-length) + 64px - var(--step-bubble-size) / 2
+    );
+    @mixin media-query-tablet {
+      margin-top: calc(
+        var(--step-bubble-tail-length) + 80px - var(--step-bubble-size) / 2
+      );
+    }
     @mixin media-query-desktop {
-      margin-top: calc(var(--step-bubble-tail-length) + 72px);
+      margin-top: calc(
+        var(--step-bubble-tail-length) + 72px - var(--step-bubble-size) / 2
+      );
     }
   }
   & .cta {
