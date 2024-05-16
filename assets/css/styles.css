@@ -57,7 +57,7 @@ img {
 button {
   border: none;
   border-radius: 29px;
-  padding: 1rem 2rem;
+  padding: 16px 40px;
   cursor: pointer;
   font-weight: var(--font-weight-black);
   font-size: 16px;
@@ -79,6 +79,7 @@ button {
 .secondary-btn {
   background-color: var(--secondary-color);
   color: var(--white);
+  padding: 16px 29px;
   & span {
     margin-left: 4px;
     color: var(--secondary-color-light);
@@ -385,6 +386,9 @@ footer {
       font-size: 18px;
       line-height: 1.44;
       letter-spacing: 0.5px;
+    }
+    .secondary-btn {
+      padding: 16px 40px;
     }
   }
   & img {
